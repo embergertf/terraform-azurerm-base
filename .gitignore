@@ -1,0 +1,8 @@
+# Terraform tests, states and secrets related files
+**/.terraform/*
+**/*.exe
+**/.terraform.lock.hcl
+**/*.tfstate.*
+**/*.tfstate
+**/*secret*
+**/localTests*
