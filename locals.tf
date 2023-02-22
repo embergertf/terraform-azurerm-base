@@ -9,7 +9,9 @@ locals {
   # -
   location_names = {
     "usnc" = "North Central US",
-    "ussc" = "South Central US"
+    "ussc" = "South Central US",
+    "cac"  = "Canada Central",
+    "cae"  = "Canada East",
   }
 
 }
