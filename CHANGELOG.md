@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [1.2.0] - 2023-02-22 - Removed some defaults
+
+### Changed
+
+- Defaults values for `subsc_code`, `env` and `owner` replaced by `null`
+
 ## [1.1.0] - 2023-02-22 - Added region codes CAC & CAE
 
 ### Changed
