@@ -31,12 +31,12 @@ variable "region_code" {
 variable "subsc_code" {
   type        = string
   description = "(Optional) Subscription code or abbreviation. Example: `azint`."
-  default     = "azint"
+  default     = null
 }
 variable "env" {
   type        = string
   description = "(Optional) Environment code. Example: `test`. <br></br>&#8226; Value of `env` examples can be: `[nonprod,prod,core,int,uat,stage,dev,test]`."
-  default     = "test"
+  default     = null
 }
 variable "base_name" {
   type        = string
@@ -56,7 +56,7 @@ variable "iterator" {
 variable "owner" {
   type        = string
   description = "(Optional) Deployed resources owner."
-  default     = "emberger"
+  default     = null
 }
 variable "additional_tags" {
   description = "(Optional) Additional base tags."
