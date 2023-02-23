@@ -8,8 +8,10 @@ locals {
   # - Generate the Azure Location name
   # -
   location_names = {
-    "usnc" = "North Central US",
-    "ussc" = "South Central US",
+    "usnc" = "northcentralus",
+    "ussc" = "southcentralus",
+    "use"  = "eastus",
+    "use2" = "eastus2",
     "cac"  = "canadacentral",
     "cae"  = "canadaeast",
   }
@@ -17,6 +19,8 @@ locals {
   location_display_names = lookup({
     "usnc" = "US North Central",
     "ussc" = "US South Central",
+    "use"  = "US East",
+    "use2" = "US East 2",
     "cac"  = "Canada Central",
     "cae"  = "Canada East",
     },
