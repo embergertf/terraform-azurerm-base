@@ -73,8 +73,8 @@ locals {
 # Tags
 locals {
   # Date tag(s)
-  UTC_to_TZ      = "-5h"
-  TZ_suffix      = "EST"
+  UTC_to_TZ      = var.UTC_to_TZ
+  TZ_suffix      = var.TZ_suffix
   created_now    = time_static.this.rfc3339
   created_TZtime = timeadd(local.created_now, local.UTC_to_TZ)
   created_nowTZ  = "${formatdate("YYYY-MM-DD hh:mm", local.created_TZtime)} ${local.TZ_suffix}"      # 2020-06-16 14:44 EST

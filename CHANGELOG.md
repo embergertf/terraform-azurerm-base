@@ -13,15 +13,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [3.0.0] - 2023-02-23 - Improved date tag
+
+### Added
+
+- variable `UTC_to_TZ` and `TZ_suffix` with defaults to EST
+
+### Changed
+
+- `Created_on` tag now displays in Timezone instead of UTC
+
+## [2.0.1] - 2023-02-23 - Bug fixed Location name and display name
+
 ## [2.0.0] - 2023-02-23 - Added Location display name
 
 ### Added
 
-- output `location_display_name` that displays a set display name of the location,
+- output `location_display_name` that displays a set display name of the location
 
 ### Changed
 
-- `location` outputs now the `name` field of the location.
+- `location` outputs now the `name` field of the location
 
 ## [1.2.0] - 2023-02-22 - Replaces 3 defaults by `null`
 

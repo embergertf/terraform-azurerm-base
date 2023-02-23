@@ -63,6 +63,17 @@ variable "additional_tags" {
   type        = map(string)
   default     = null
 }
+variable UTC_to_TZ {
+  type        = string
+  description = "(Optional) Timezone difference with UTC time."
+  default     = "-5h"
+}
+variable TZ_suffix {
+  type        = string
+  description = "(Optional) Timezone suffix code."
+  default     = "EST"
+}
+
 
 # -
 # - Optional tuning switches & defaults
