@@ -10,6 +10,10 @@ output "location" {
   value       = local.location_names[var.region_code]
   description = "Location name compliant with `Azure Regions`' names. The list can be fetched with `az account list-locations --query '[].name'`."
 }
+output "location_display_name" {
+  value       = local.location_display_names[var.region_code]
+  description = "Location display name."
+}
 output "tags" {
   value       = local.base_tags
   description = "Set of Azure tags for the resource."
