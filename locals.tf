@@ -7,16 +7,17 @@ locals {
   # -
   # - Generate the Azure Location name
   # -
-  location_names = {
+  location_name = lookup({
     "usnc" = "northcentralus",
     "ussc" = "southcentralus",
     "use"  = "eastus",
     "use2" = "eastus2",
     "cac"  = "canadacentral",
     "cae"  = "canadaeast",
-  }
+    },
+    lower(var.region_code), "Not found")
   
-  location_display_names = lookup({
+  location_display_name = lookup({
     "usnc" = "US North Central",
     "ussc" = "US South Central",
     "use"  = "US East",
@@ -24,7 +25,7 @@ locals {
     "cac"  = "Canada Central",
     "cae"  = "Canada East",
     },
-    lower(var.region_code), "")
+    lower(var.region_code), "Not found")
 }
 
 # Resource Name
