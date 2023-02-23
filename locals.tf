@@ -72,12 +72,23 @@ locals {
 
 # Tags
 locals {
-  generated_tags = {
-    created_on  = formatdate("YYYY-MM-DD hh:mm ZZZ", time_static.this.rfc3339)
-    created_with = "terraform >=1.0.0"
-    environment = var.env
-    owner       = var.owner
+  # Date tag(s)
+  UTC_to_TZ      = "-5h"
+  TZ_suffix      = "EST"
+  created_now    = time_static.this.rfc3339
+  created_TZtime = timeadd(local.created_now, local.UTC_to_TZ)
+  created_nowTZ  = "${formatdate("YYYY-MM-DD hh:mm", local.created_TZtime)} ${local.TZ_suffix}"      # 2020-06-16 14:44 EST
+  date_tags = {
+    Created_on   = local.created_nowTZ
   }
+
+  # Generated tag(s)
+  generated_tags = {
+    Created_with = "terraform >=1.0.0"
+    Environment  = var.env
+    Owner        = var.owner
+  }
+
   # Add additional_tags
-  base_tags = merge(local.generated_tags, var.additional_tags)
+  base_tags = merge(local.generated_tags, local.date_tags, var.additional_tags)
 }
