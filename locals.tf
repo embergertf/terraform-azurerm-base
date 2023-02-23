@@ -10,10 +10,17 @@ locals {
   location_names = {
     "usnc" = "North Central US",
     "ussc" = "South Central US",
+    "cac"  = "canadacentral",
+    "cae"  = "canadaeast",
+  }
+  
+  location_display_names = lookup({
+    "usnc" = "US North Central",
+    "ussc" = "US South Central",
     "cac"  = "Canada Central",
     "cae"  = "Canada East",
-  }
-
+    },
+    lower(var.region_code), "")
 }
 
 # Resource Name
