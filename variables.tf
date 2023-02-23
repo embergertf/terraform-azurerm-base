@@ -21,10 +21,10 @@ variable "name_override" {
 
 variable "region_code" {
   type        = string
-  description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,cac,cae]`."
+  description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,use,use2,cac,cae]`."
   validation {
-    condition     = contains(["usnc", "ussc", "cac", "cae"], var.region_code)
-    error_message = "Value of \"region_code\" must be one of: [usnc,ussc,cac,cae]."
+    condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
+    error_message = "Value of \"region_code\" must be one of: [usnc,ussc,use,use2,cac,cae]."
   }
   default = "usnc"
 }
