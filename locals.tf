@@ -7,25 +7,48 @@ locals {
   # -
   # - Generate the Azure Location name
   # -
-  location_name = lookup({
-    "usnc" = "northcentralus",
-    "ussc" = "southcentralus",
-    "use"  = "eastus",
-    "use2" = "eastus2",
-    "cac"  = "canadacentral",
-    "cae"  = "canadaeast",
-    },
-    lower(var.region_code), "Not found")
-  
-  location_display_name = lookup({
-    "usnc" = "US North Central",
-    "ussc" = "US South Central",
-    "use"  = "US East",
-    "use2" = "US East 2",
-    "cac"  = "Canada Central",
-    "cae"  = "Canada East",
-    },
-    lower(var.region_code), "Not found")
+  # location_name = lookup({
+  #   "usnc" = "northcentralus",
+  #   "ussc" = "southcentralus",
+  #   "use"  = "eastus",
+  #   "use2" = "eastus2",
+  #   "cac"  = "canadacentral",
+  #   "cae"  = "canadaeast",
+  #   },
+  #   lower(var.region_code),
+  # "Not found")
+
+  # location_display_name = lookup({
+  #   "usnc" = "US North Central",
+  #   "ussc" = "US South Central",
+  #   "use"  = "US East",
+  #   "use2" = "US East 2",
+  #   "cac"  = "Canada Central",
+  #   "cae"  = "Canada East",
+  #   },
+  #   lower(var.region_code),
+  # "Not found")
+
+  # locations_map = {
+  #   # Canada
+  #   "cac" = { display_name = "Canada Central", location = "canadacentral" }
+  #   "cae" = { display_name = "Canada East", location = "canadaeast" }
+
+  #   # US
+  #   "usnc"  = { display_name = "US North Central", location = "northcentralus" }
+  #   "ussc"  = { display_name = "US South Central", location = "southcentralus" }
+  #   "use"   = { display_name = "US East", location = "eastus" }
+  #   "uswe2" = { display_name = "US West 2", location = "westus2" }
+  #   "uswe3" = { display_name = "US West 3", location = "westus3" }
+  #   "uscn"  = { display_name = "US Central", location = "centralus" }
+  #   "use2"  = { display_name = "US East 2", location = "eastus2" }
+  #   "uswe"  = { display_name = "US West", location = "westus" }
+  #   "uswc"  = { display_name = "US West Central", location = "westcentralus" }
+  # }
+
+  locations_map        = jsondecode(file("${path.module}/locations.json"))
+  location_keys        = keys(local.locations_map)
+  location_keys_string = join(", ", local.location_keys)
 }
 
 # Resource Name
@@ -77,9 +100,9 @@ locals {
   TZ_suffix      = var.TZ_suffix
   created_now    = time_static.this.rfc3339
   created_TZtime = timeadd(local.created_now, local.UTC_to_TZ)
-  created_nowTZ  = "${formatdate("YYYY-MM-DD hh:mm", local.created_TZtime)} ${local.TZ_suffix}"      # 2020-06-16 14:44 EST
+  created_nowTZ  = "${formatdate("YYYY-MM-DD hh:mm", local.created_TZtime)} ${local.TZ_suffix}" # 2020-06-16 14:44 EST
   date_tags = {
-    Created_on   = local.created_nowTZ
+    Created_on = local.created_nowTZ
   }
 
   # Generated tag(s)

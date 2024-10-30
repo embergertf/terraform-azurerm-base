@@ -1,0 +1,13 @@
+{
+  "cac": { "display_name": "Canada Central", "location": "canadacentral" },
+  "cae": { "display_name": "Canada East", "location": "canadaeast" },
+  "usnc": { "display_name": "US North Central", "location": "northcentralus" },
+  "ussc": { "display_name": "US South Central", "location": "southcentralus" },
+  "use": { "display_name": "US East", "location": "eastus" },
+  "uswe2": { "display_name": "US West 2", "location": "westus2" },
+  "uswe3": { "display_name": "US West 3", "location": "westus3" },
+  "uscn": { "display_name": "US Central", "location": "centralus" },
+  "use2": { "display_name": "US East 2", "location": "eastus2" },
+  "uswe": { "display_name": "US West", "location": "westus" },
+  "uswc": { "display_name": "US West Central", "location": "westcentralus" }
+}

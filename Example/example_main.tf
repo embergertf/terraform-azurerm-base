@@ -10,8 +10,8 @@ module "rg_cascade" {
   # Local use
   source = "../../terraform-azurerm-base"
 
-  region_code     = "usnc"
-  subsc_code      = "azint"
+  region_code     = "cac"
+  subsc_code      = "mcaps"
   env             = "dev"
   base_name       = "basemodule"
   additional_name = ""
@@ -30,15 +30,15 @@ module "rg_cascade" {
   rnd_length         = 2
 }
 
-# Test the base module outputs by creating a Resource Group
-resource "azurerm_resource_group" "this" {
-  name     = module.rg_cascade.name
-  location = module.rg_cascade.location
+# # Test the base module outputs by creating a Resource Group
+# resource "azurerm_resource_group" "this" {
+#   name     = module.rg_cascade.name
+#   location = module.rg_cascade.location
 
-  tags = merge(module.rg_cascade.tags, {
-    random_suffix = module.rg_cascade.random_suffix
-  })
-}
+#   tags = merge(module.rg_cascade.tags, {
+#     random_suffix = module.rg_cascade.random_suffix
+#   })
+# }
 
 # Test name override
 module "rg_override" {
@@ -47,8 +47,8 @@ module "rg_override" {
 
   name_override = "biglittleoverride"
   additional_tags = {
-    app_id  = "1"
-    test_by = "emberger"
+    app_id  = "4"
+    test_by = "github"
   }
 
   # Resource naming inputs
@@ -59,12 +59,12 @@ module "rg_override" {
   rnd_length         = 2
 }
 
-# Test the base module outputs by creating a Resource Group
-resource "azurerm_resource_group" "or" {
-  name     = module.rg_override.name
-  location = module.rg_override.location
+# # Test the base module outputs by creating a Resource Group
+# resource "azurerm_resource_group" "or" {
+#   name     = module.rg_override.name
+#   location = module.rg_override.location
 
-  tags = merge(module.rg_override.tags, {
-    random_suffix = module.rg_cascade.random_suffix
-  })
-}
+#   tags = merge(module.rg_override.tags, {
+#     random_suffix = module.rg_cascade.random_suffix
+#   })
+# }

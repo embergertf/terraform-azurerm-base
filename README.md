@@ -96,7 +96,6 @@ resource "azurerm_resource_group" "this" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >=3.1.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >=0.7.2 |
 
@@ -109,19 +108,21 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_resource_type_code"></a> [resource\_type\_code](#input\_resource\_type\_code) | (Required) Azure resource type abbreviation. Example: `rg`, `vnet`, `st`, etc. More information: [Azure resource abbreviations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations) | `string` | n/a | yes |
+| <a name="input_TZ_suffix"></a> [TZ\_suffix](#input\_TZ\_suffix) | (Optional) Timezone suffix code. | `string` | `"EST"` | no |
+| <a name="input_UTC_to_TZ"></a> [UTC\_to\_TZ](#input\_UTC\_to\_TZ) | (Optional) Timezone difference with UTC time. | `string` | `"-5h"` | no |
 | <a name="input_add_random"></a> [add\_random](#input\_add\_random) | (Optional) When set to `true`, it will add a `rnd_length`'s long `random_number` at the name's end. | `bool` | `false` | no |
 | <a name="input_additional_name"></a> [additional\_name](#input\_additional\_name) | (Optional) Additional suffix to create resource uniqueness. It will be separated by a `'-'` from the "name's generated" suffix. Example: `lan1`. | `string` | `null` | no |
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | (Optional) Additional base tags. | `map(string)` | `null` | no |
 | <a name="input_base_name"></a> [base\_name](#input\_base\_name) | (Optional) Resource "base" name. Example: `aks`. | `string` | `null` | no |
-| <a name="input_env"></a> [env](#input\_env) | (Optional) Environment code. Example: `test`. <br></br>&#8226; Value of `env` examples can be: `[nonprod,prod,core,int,uat,stage,dev,test]`. | `string` | `"test"` | no |
+| <a name="input_env"></a> [env](#input\_env) | (Optional) Environment code. Example: `test`. <br></br>&#8226; Value of `env` examples can be: `[nonprod,prod,core,int,uat,stage,dev,test]`. | `string` | `null` | no |
 | <a name="input_iterator"></a> [iterator](#input\_iterator) | (Optional) Iterator to create resource uniqueness. It will be separated by a `'-'` from the "name's generated + additional\_name" concatenation. Example: `001`. | `string` | `null` | no |
 | <a name="input_max_length"></a> [max\_length](#input\_max\_length) | (Optional) Set the maximum length of the generated name. If over, the name will be trimmed to the `max_length`, considering the eventual `random_number` suffix. See this link for reference: [Resource name rules](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules) | `number` | `63` | no |
 | <a name="input_name_override"></a> [name\_override](#input\_name\_override) | (Optional) Full name to override all the name generation, except resource type code. Example: 'biglittletest' will generate the resource name "'<resource\_type\_code>-biglittletest'". | `string` | `null` | no |
 | <a name="input_no_dashes"></a> [no\_dashes](#input\_no\_dashes) | (Optional) When set to `true`, it will remove all `'-'` separators from the generated name. | `bool` | `false` | no |
-| <a name="input_owner"></a> [owner](#input\_owner) | (Optional) Deployed resources owner. | `string` | `"emberger"` | no |
-| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc]`. | `string` | `"usnc"` | no |
+| <a name="input_owner"></a> [owner](#input\_owner) | (Optional) Deployed resources owner. | `string` | `null` | no |
+| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,use,use2,cac,cae]`. | `string` | `"usnc"` | no |
 | <a name="input_rnd_length"></a> [rnd\_length](#input\_rnd\_length) | (Optional) Set the length of the `random_number` generated. | `number` | `2` | no |
-| <a name="input_subsc_code"></a> [subsc\_code](#input\_subsc\_code) | (Optional) Subscription code or abbreviation. Example: `azint`. | `string` | `"azint"` | no |
+| <a name="input_subsc_code"></a> [subsc\_code](#input\_subsc\_code) | (Optional) Subscription code or abbreviation. Example: `azint`. | `string` | `null` | no |
 
 ### Resources
 
@@ -135,6 +136,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_location"></a> [location](#output\_location) | Location name compliant with `Azure Regions`' names. The list can be fetched with `az account list-locations --query '[].name'`. |
+| <a name="output_location_display_name"></a> [location\_display\_name](#output\_location\_display\_name) | Location display name. |
 | <a name="output_name"></a> [name](#output\_name) | The generated name of the resource by the module. |
 | <a name="output_random_suffix"></a> [random\_suffix](#output\_random\_suffix) | Randomized piece of the name, if used, for any name manipulation. |
 | <a name="output_tags"></a> [tags](#output\_tags) | Set of Azure tags for the resource. |

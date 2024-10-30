@@ -23,8 +23,9 @@ variable "region_code" {
   type        = string
   description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,use,use2,cac,cae]`."
   validation {
-    condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
-    error_message = "Value of \"region_code\" must be one of: [usnc,ussc,use,use2,cac,cae]."
+    # condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
+    condition     = contains(local.location_keys, var.region_code)
+    error_message = "Value of \"region_code\" must be one of: [ ${local.location_keys_string} ]."
   }
   default = "usnc"
 }
@@ -63,12 +64,12 @@ variable "additional_tags" {
   type        = map(string)
   default     = null
 }
-variable UTC_to_TZ {
+variable "UTC_to_TZ" {
   type        = string
   description = "(Optional) Timezone difference with UTC time."
   default     = "-5h"
 }
-variable TZ_suffix {
+variable "TZ_suffix" {
   type        = string
   description = "(Optional) Timezone suffix code."
   default     = "EST"

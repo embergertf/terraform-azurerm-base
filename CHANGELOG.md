@@ -13,6 +13,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [3.1.0] - 2024-10-30 - Switched to a `locations.json` file
+
+### Added
+
+- Azure locations codes, names and display names are in a JSON file `locations.json`
+- Example/ terraform plan is cleaned and outputs example/test values
+
+### Changed
+
+- `locals` logic for azure regions uses `locations.json` file
+- variable `region_code` validation uses `locations.json` file keys
+
+### Removed
+
+- hard coded `locals`: `location_name` and `location_display_name`
+- useless Example/*.tf files
+- need of `azurerm` provider to test the module
+
 ## [3.0.0] - 2023-02-23 - Improved date tag
 
 ### Added
