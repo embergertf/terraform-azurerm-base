@@ -120,7 +120,7 @@ No modules.
 | <a name="input_name_override"></a> [name\_override](#input\_name\_override) | (Optional) Full name to override all the name generation, except resource type code. Example: 'biglittletest' will generate the resource name "'<resource\_type\_code>-biglittletest'". | `string` | `null` | no |
 | <a name="input_no_dashes"></a> [no\_dashes](#input\_no\_dashes) | (Optional) When set to `true`, it will remove all `'-'` separators from the generated name. | `bool` | `false` | no |
 | <a name="input_owner"></a> [owner](#input\_owner) | (Optional) Deployed resources owner. | `string` | `null` | no |
-| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,use,use2,cac,cae]`. | `string` | `"usnc"` | no |
+| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[ cac, cae, uscn, use, use2, usnc, ussc, uswc, uswe, uswe2, uswe3 ]`. | `string` | `"usnc"` | no |
 | <a name="input_rnd_length"></a> [rnd\_length](#input\_rnd\_length) | (Optional) Set the length of the `random_number` generated. | `number` | `2` | no |
 | <a name="input_subsc_code"></a> [subsc\_code](#input\_subsc\_code) | (Optional) Subscription code or abbreviation. Example: `azint`. | `string` | `null` | no |
 

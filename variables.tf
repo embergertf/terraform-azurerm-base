@@ -21,7 +21,7 @@ variable "name_override" {
 
 variable "region_code" {
   type        = string
-  description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[usnc,ussc,use,use2,cac,cae]`."
+  description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[ cac, cae, uscn, use, use2, usnc, ussc, uswc, uswe, uswe2, uswe3 ]`."
   validation {
     # condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
     condition     = contains(local.location_keys, var.region_code)
