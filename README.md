@@ -96,8 +96,8 @@ resource "azurerm_resource_group" "this" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >=3.1.0 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | >=0.7.2 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >=3.6 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >=0.12 |
 
 ### Modules
 
