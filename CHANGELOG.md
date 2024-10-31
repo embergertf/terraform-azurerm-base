@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [3.1.2] - 2024-10-31 - Trigger TF Cloud module version
+
+### Changed
+
+- new tag to trigger new terraform module version in TF Cloud, after reconnecting the VCS provider
+
 ## [3.1.1] - 2024-10-30 - Improved README
 
 ### Changed
