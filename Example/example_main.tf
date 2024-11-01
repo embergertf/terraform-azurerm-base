@@ -6,17 +6,19 @@
 #   Test Base module Main
 #--------------------------------------------------------------
 # Test naming cascade
-module "rg_cascade" {
+module "base_cascade" {
   # Local use
   source = "../../terraform-azurerm-base"
 
-  region_code     = "cac"
-  subsc_code      = "mcaps"
-  env             = "dev"
-  base_name       = "basemodule"
-  additional_name = ""
-  iterator        = "01"
-  owner           = "john.doe@internet.com"
+  region_code = "cac"
+  subsc_code  = "mcaps"
+  env         = "dev"
+  base_name   = "basemodule"
+  # additional_name = ""
+  iterator   = "01"
+  owner      = "john.doe@internet.com"
+  add_random = true
+  rnd_length = 2
   additional_tags = {
     app_id  = "1"
     test_by = "emberger"
@@ -26,22 +28,11 @@ module "rg_cascade" {
   resource_type_code = "rg"
   max_length         = 64
   no_dashes          = false
-  add_random         = true
-  rnd_length         = 2
 }
 
-# # Test the base module outputs by creating a Resource Group
-# resource "azurerm_resource_group" "this" {
-#   name     = module.rg_cascade.name
-#   location = module.rg_cascade.location
-
-#   tags = merge(module.rg_cascade.tags, {
-#     random_suffix = module.rg_cascade.random_suffix
-#   })
-# }
-
+/*
 # Test name override
-module "rg_override" {
+module "base_override" {
   # Local use
   source = "../../terraform-azurerm-base"
 
@@ -58,13 +49,19 @@ module "rg_override" {
   add_random         = true
   rnd_length         = 2
 }
+#*/
 
-# # Test the base module outputs by creating a Resource Group
-# resource "azurerm_resource_group" "or" {
-#   name     = module.rg_override.name
-#   location = module.rg_override.location
+# Test naming_values
+module "base_naming_values" {
+  # Local use
+  source = "../../terraform-azurerm-base"
 
-#   tags = merge(module.rg_override.tags, {
-#     random_suffix = module.rg_cascade.random_suffix
-#   })
-# }
+  naming_values = module.base_cascade.naming_values
+  region_code   = "uscn"
+
+  # Resource naming inputs
+  resource_type_code = "test"
+  max_length         = 64
+  no_dashes          = false
+}
+#*/

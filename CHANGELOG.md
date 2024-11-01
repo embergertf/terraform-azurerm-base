@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [4.0.0] - 2024-10-31 - Adding `naming_values` for modules chaining
+
+### Added
+
+- variable `naming_values`
+- output `naming_values`
+
+### Changed
+
+- `"hashicorp/random"` set to `~> 3.6`
+- `"hashicorp/time"` set to `~> 0.12`
+- `locals` logic for naming values includes tests for `naming_values`
+- renamed `versions.tf` to `terraform_version.tf`
+
 ## [3.1.3] - 2024-10-31 - Upgraded `required_providers` versions
 
 ### Changed

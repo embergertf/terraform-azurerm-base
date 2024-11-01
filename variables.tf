@@ -19,15 +19,29 @@ variable "name_override" {
   default     = null
 }
 
+variable "naming_values" {
+  type = object({
+    region_code     = optional(string)
+    subsc_code      = optional(string)
+    env             = optional(string)
+    base_name       = optional(string)
+    additional_name = optional(string)
+    iterator        = optional(string)
+    owner           = optional(string)
+    additional_tags = optional(map(string))
+  })
+  description = "(Optional) A terraform object with the naming values in 1 variable."
+  default     = null
+}
 variable "region_code" {
   type        = string
   description = "(Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[ cac, cae, uscn, use, use2, usnc, ussc, uswc, uswe, uswe2, uswe3 ]`."
-  validation {
-    # condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
-    condition     = contains(local.location_keys, var.region_code)
-    error_message = "Value of \"region_code\" must be one of: [ ${local.location_keys_string} ]."
-  }
-  default = "usnc"
+  # validation {
+  #   # condition     = contains(["usnc", "ussc", "use", "use2", "cac", "cae"], var.region_code)
+  #   condition     = contains(local.location_keys, var.region_code)
+  #   error_message = "Value of \"region_code\" must be one of: [ ${local.location_keys_string} ]."
+  # }
+  default = null
 }
 variable "subsc_code" {
   type        = string

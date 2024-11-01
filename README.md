@@ -95,9 +95,9 @@ resource "azurerm_resource_group" "this" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >=3.6 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | >=0.12 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.12 |
 
 ### Modules
 
@@ -118,9 +118,10 @@ No modules.
 | <a name="input_iterator"></a> [iterator](#input\_iterator) | (Optional) Iterator to create resource uniqueness. It will be separated by a `'-'` from the "name's generated + additional\_name" concatenation. Example: `001`. | `string` | `null` | no |
 | <a name="input_max_length"></a> [max\_length](#input\_max\_length) | (Optional) Set the maximum length of the generated name. If over, the name will be trimmed to the `max_length`, considering the eventual `random_number` suffix. See this link for reference: [Resource name rules](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules) | `number` | `63` | no |
 | <a name="input_name_override"></a> [name\_override](#input\_name\_override) | (Optional) Full name to override all the name generation, except resource type code. Example: 'biglittletest' will generate the resource name "'<resource\_type\_code>-biglittletest'". | `string` | `null` | no |
+| <a name="input_naming_values"></a> [naming\_values](#input\_naming\_values) | (Optional) A terraform object with the naming values in 1 variable. | <pre>object({<br>    region_code     = optional(string)<br>    subsc_code      = optional(string)<br>    env             = optional(string)<br>    base_name       = optional(string)<br>    additional_name = optional(string)<br>    iterator        = optional(string)<br>    owner           = optional(string)<br>    additional_tags = optional(map(string))<br>  })</pre> | `null` | no |
 | <a name="input_no_dashes"></a> [no\_dashes](#input\_no\_dashes) | (Optional) When set to `true`, it will remove all `'-'` separators from the generated name. | `bool` | `false` | no |
 | <a name="input_owner"></a> [owner](#input\_owner) | (Optional) Deployed resources owner. | `string` | `null` | no |
-| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[ cac, cae, uscn, use, use2, usnc, ussc, uswc, uswe, uswe2, uswe3 ]`. | `string` | `"usnc"` | no |
+| <a name="input_region_code"></a> [region\_code](#input\_region\_code) | (Optional) Resource region code.<br></br>&#8226; Value of `region_code` must be one of: `[ cac, cae, uscn, use, use2, usnc, ussc, uswc, uswe, uswe2, uswe3 ]`. | `string` | `null` | no |
 | <a name="input_rnd_length"></a> [rnd\_length](#input\_rnd\_length) | (Optional) Set the length of the `random_number` generated. | `number` | `2` | no |
 | <a name="input_subsc_code"></a> [subsc\_code](#input\_subsc\_code) | (Optional) Subscription code or abbreviation. Example: `azint`. | `string` | `null` | no |
 
@@ -138,6 +139,7 @@ No modules.
 | <a name="output_location"></a> [location](#output\_location) | Location name compliant with `Azure Regions`' names. The list can be fetched with `az account list-locations --query '[].name'`. |
 | <a name="output_location_display_name"></a> [location\_display\_name](#output\_location\_display\_name) | Location display name. |
 | <a name="output_name"></a> [name](#output\_name) | The generated name of the resource by the module. |
+| <a name="output_naming_values"></a> [naming\_values](#output\_naming\_values) | A terraform object with the naming values in 1 variable. |
 | <a name="output_random_suffix"></a> [random\_suffix](#output\_random\_suffix) | Randomized piece of the name, if used, for any name manipulation. |
 | <a name="output_tags"></a> [tags](#output\_tags) | Set of Azure tags for the resource. |
 

@@ -18,38 +18,24 @@ locals {
   #   lower(var.region_code),
   # "Not found")
 
-  # location_display_name = lookup({
-  #   "usnc" = "US North Central",
-  #   "ussc" = "US South Central",
-  #   "use"  = "US East",
-  #   "use2" = "US East 2",
-  #   "cac"  = "Canada Central",
-  #   "cae"  = "Canada East",
-  #   },
-  #   lower(var.region_code),
-  # "Not found")
-
-  # locations_map = {
-  #   # Canada
-  #   "cac" = { display_name = "Canada Central", location = "canadacentral" }
-  #   "cae" = { display_name = "Canada East", location = "canadaeast" }
-
-  #   # US
-  #   "usnc"  = { display_name = "US North Central", location = "northcentralus" }
-  #   "ussc"  = { display_name = "US South Central", location = "southcentralus" }
-  #   "use"   = { display_name = "US East", location = "eastus" }
-  #   "uswe2" = { display_name = "US West 2", location = "westus2" }
-  #   "uswe3" = { display_name = "US West 3", location = "westus3" }
-  #   "uscn"  = { display_name = "US Central", location = "centralus" }
-  #   "use2"  = { display_name = "US East 2", location = "eastus2" }
-  #   "uswe"  = { display_name = "US West", location = "westus" }
-  #   "uswc"  = { display_name = "US West Central", location = "westcentralus" }
-  # }
-
   locations_map        = jsondecode(file("${path.module}/locations.json"))
   location_keys        = keys(local.locations_map)
   location_keys_string = join(", ", local.location_keys)
 }
+
+# Naming values logic
+locals {
+  # Naming values cascade
+  region_code     = var.region_code != null ? var.region_code : var.naming_values == null ? null : var.naming_values["region_code"] != null ? var.naming_values["region_code"] : null
+  subsc_code      = var.subsc_code != null ? var.subsc_code : var.naming_values == null ? null : var.naming_values["subsc_code"] != null ? var.naming_values["subsc_code"] : null
+  env             = var.env != null ? var.env : var.naming_values == null ? null : var.naming_values["env"] != null ? var.naming_values["env"] : null
+  base_name       = var.base_name != null ? var.base_name : var.naming_values == null ? null : var.naming_values["base_name"] != null ? var.naming_values["base_name"] : null
+  additional_name = var.additional_name != null ? var.additional_name : var.naming_values == null ? null : var.naming_values["additional_name"] != null ? var.naming_values["additional_name"] : null
+  iterator        = var.iterator != null ? var.iterator : var.naming_values == null ? null : var.naming_values["iterator"] != null ? var.naming_values["iterator"] : null
+  owner           = var.owner != null ? var.owner : var.naming_values == null ? null : var.naming_values["owner"] != null ? var.naming_values["owner"] : null
+  additional_tags = var.additional_tags != null ? var.additional_tags : var.naming_values == null ? {} : var.naming_values["additional_tags"] != null ? var.naming_values["additional_tags"] : null
+}
+
 
 # Resource Name
 locals {
@@ -58,22 +44,22 @@ locals {
 
   ### - Resource name generation Cascade
   # Build mandatory prefix
-  rn_with_regioncode = join(local.separator, [var.resource_type_code, var.region_code])
+  rn_with_regioncode = join(local.separator, [var.resource_type_code, local.region_code])
 
   # Add subscription, if any
-  rn_with_sub = var.subsc_code != null && var.subsc_code != "" ? join(local.separator, [local.rn_with_regioncode, var.subsc_code]) : local.rn_with_regioncode
+  rn_with_sub = local.subsc_code != null && local.subsc_code != "" ? join(local.separator, [local.rn_with_regioncode, local.subsc_code]) : local.rn_with_regioncode
 
   # Add environment, if any
-  rn_with_env = var.env != null && var.env != "" ? join(local.separator, [local.rn_with_sub, var.env]) : local.rn_with_sub
+  rn_with_env = local.env != null && local.env != "" ? join(local.separator, [local.rn_with_sub, local.env]) : local.rn_with_sub
 
   # Add base name, if any
-  rn_with_basename = var.base_name != null && var.base_name != "" ? join(local.separator, [local.rn_with_env, var.base_name]) : local.rn_with_env
+  rn_with_basename = local.base_name != null && local.base_name != "" ? join(local.separator, [local.rn_with_env, local.base_name]) : local.rn_with_env
 
   # Add additional name, if any
-  rn_with_additionalname = var.additional_name != null && var.additional_name != "" ? join(local.separator, [local.rn_with_basename, var.additional_name]) : local.rn_with_basename
+  rn_with_additionalname = local.additional_name != null && local.additional_name != "" ? join(local.separator, [local.rn_with_basename, local.additional_name]) : local.rn_with_basename
 
   # Add iterator, if any
-  rn_with_iterator = var.iterator != null && var.iterator != "" ? join(local.separator, [local.rn_with_additionalname, var.iterator]) : local.rn_with_additionalname
+  rn_with_iterator = local.iterator != null && local.iterator != "" ? join(local.separator, [local.rn_with_additionalname, local.iterator]) : local.rn_with_additionalname
 
 
   # If name_override was used, we replace
@@ -108,10 +94,10 @@ locals {
   # Generated tag(s)
   generated_tags = {
     Created_with = "terraform >=1.0.0"
-    Environment  = var.env
-    Owner        = var.owner
+    Environment  = local.env
+    Owner        = local.owner
   }
 
   # Add additional_tags
-  base_tags = merge(local.generated_tags, local.date_tags, var.additional_tags)
+  base_tags = merge(local.generated_tags, local.date_tags, local.additional_tags)
 }
