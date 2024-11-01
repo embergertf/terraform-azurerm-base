@@ -3,7 +3,7 @@
 #
 
 # -
-# - Required Terraform providers & versions
+# - Required Terraform providers + versions
 # -
 terraform {
   required_providers {
