@@ -6,7 +6,7 @@
 #   Test Base module Main
 #--------------------------------------------------------------
 # Test naming cascade
-module "base_cascade" {
+module "cascade" {
   # Local use
   source = "../../terraform-azurerm-base"
 
@@ -52,12 +52,13 @@ module "base_override" {
 #*/
 
 # Test naming_values
-module "base_naming_values" {
+module "naming_values" {
   # Local use
   source = "../../terraform-azurerm-base"
 
-  naming_values = module.base_cascade.naming_values
-  region_code   = "uscn"
+  naming_values   = var.naming_values
+  region_code     = "uscn"
+  additional_tags = var.additional_tags_1
 
   # Resource naming inputs
   resource_type_code = "test"
