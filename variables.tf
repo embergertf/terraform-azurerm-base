@@ -1,5 +1,5 @@
 #
-# Copyright 2023 Emmanuel Bergerat
+# Copyright 2024 Emmanuel Bergerat
 #
 
 # -
@@ -86,7 +86,7 @@ variable "UTC_to_TZ" {
 variable "TZ_suffix" {
   type        = string
   description = "(Optional) Timezone suffix code."
-  default     = "EST"
+  default     = "ET"
 }
 
 
