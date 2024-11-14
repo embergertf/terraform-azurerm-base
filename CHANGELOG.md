@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
+## [4.1.0] - 2024-11-14 - Changed `additional_tags` logic
+
+### Changed
+
+- `additional_tags` logic now merges `naming_values["additional_tags"]` & `additional_tags` when both are present
+
 ## [4.0.0] - 2024-10-31 - Adding `naming_values` for modules chaining
 
 ### Added

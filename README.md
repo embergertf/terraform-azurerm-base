@@ -95,7 +95,7 @@ resource "azurerm_resource_group" "this" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.12 |
 
@@ -108,7 +108,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_resource_type_code"></a> [resource\_type\_code](#input\_resource\_type\_code) | (Required) Azure resource type abbreviation. Example: `rg`, `vnet`, `st`, etc. More information: [Azure resource abbreviations](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations) | `string` | n/a | yes |
-| <a name="input_TZ_suffix"></a> [TZ\_suffix](#input\_TZ\_suffix) | (Optional) Timezone suffix code. | `string` | `"EST"` | no |
+| <a name="input_TZ_suffix"></a> [TZ\_suffix](#input\_TZ\_suffix) | (Optional) Timezone suffix code. | `string` | `"ET"` | no |
 | <a name="input_UTC_to_TZ"></a> [UTC\_to\_TZ](#input\_UTC\_to\_TZ) | (Optional) Timezone difference with UTC time. | `string` | `"-5h"` | no |
 | <a name="input_add_random"></a> [add\_random](#input\_add\_random) | (Optional) When set to `true`, it will add a `rnd_length`'s long `random_number` at the name's end. | `bool` | `false` | no |
 | <a name="input_additional_name"></a> [additional\_name](#input\_additional\_name) | (Optional) Additional suffix to create resource uniqueness. It will be separated by a `'-'` from the "name's generated" suffix. Example: `lan1`. | `string` | `null` | no |

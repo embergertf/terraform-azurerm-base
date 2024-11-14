@@ -22,7 +22,7 @@ locals {
   additional_name = var.additional_name != null ? var.additional_name : var.naming_values == null ? null : var.naming_values["additional_name"] != null ? var.naming_values["additional_name"] : null
   iterator        = var.iterator != null ? var.iterator : var.naming_values == null ? null : var.naming_values["iterator"] != null ? var.naming_values["iterator"] : null
   owner           = var.owner != null ? var.owner : var.naming_values == null ? null : var.naming_values["owner"] != null ? var.naming_values["owner"] : null
-  additional_tags = var.additional_tags != null ? var.additional_tags : var.naming_values == null ? {} : var.naming_values["additional_tags"] != null ? var.naming_values["additional_tags"] : null
+  additional_tags = var.naming_values == null ? (var.additional_tags == null ? null : var.additional_tags) : var.naming_values["additional_tags"] != null ? merge(var.naming_values["additional_tags"], var.additional_tags) : null
 }
 
 # Resource Name
