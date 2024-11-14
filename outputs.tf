@@ -1,5 +1,5 @@
 #
-# Copyright 2022 Emmanuel Bergerat
+# Copyright 2024 Emmanuel Bergerat
 #
 
 output "name" {
@@ -35,11 +35,6 @@ output "naming_values" {
     iterator        = local.iterator
     owner           = local.owner
     additional_tags = local.additional_tags
-    # resource_name         = local.resource_name
-    # location              = local.locations_map[var.region_code].location
-    # location_display_name = local.locations_map[var.region_code].display_name
-    # tags                  = local.base_tags
-    # random_suffix         = local.random_suffix
   }
   description = "A terraform object with the naming values in 1 variable."
 }

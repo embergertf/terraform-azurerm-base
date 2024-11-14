@@ -1,5 +1,5 @@
 #
-# Copyright 2023 - Emmanuel Bergerat
+# Copyright 2024 - Emmanuel Bergerat
 #
 
 # Region
@@ -7,17 +7,6 @@ locals {
   # -
   # - Generate the Azure Location name
   # -
-  # location_name = lookup({
-  #   "usnc" = "northcentralus",
-  #   "ussc" = "southcentralus",
-  #   "use"  = "eastus",
-  #   "use2" = "eastus2",
-  #   "cac"  = "canadacentral",
-  #   "cae"  = "canadaeast",
-  #   },
-  #   lower(var.region_code),
-  # "Not found")
-
   locations_map        = jsondecode(file("${path.module}/locations.json"))
   location_keys        = keys(local.locations_map)
   location_keys_string = join(", ", local.location_keys)
@@ -35,7 +24,6 @@ locals {
   owner           = var.owner != null ? var.owner : var.naming_values == null ? null : var.naming_values["owner"] != null ? var.naming_values["owner"] : null
   additional_tags = var.additional_tags != null ? var.additional_tags : var.naming_values == null ? {} : var.naming_values["additional_tags"] != null ? var.naming_values["additional_tags"] : null
 }
-
 
 # Resource Name
 locals {
@@ -93,11 +81,15 @@ locals {
 
   # Generated tag(s)
   generated_tags = {
-    Created_with = "terraform >=1.0.0"
+    Created_with = "terraform ~> 1.0"
     Environment  = local.env
     Owner        = local.owner
   }
 
-  # Add additional_tags
-  base_tags = merge(local.generated_tags, local.date_tags, local.additional_tags)
+  # Create base tags
+  base_tags = merge(
+    local.generated_tags,
+    local.date_tags,
+    local.additional_tags
+  )
 }
